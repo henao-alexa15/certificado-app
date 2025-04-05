@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Certificados Personalizado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="welcome-screen">
+        <div class="theme-selector">
+            <h2>Selecciona tu género para personalizar la aplicación</h2>
+            <button class="theme-btn male-theme" onclick="selectTheme('male')">
+                <i class="fas fa-mars"></i> Masculino
+            </button>
+            <button class="theme-btn female-theme" onclick="selectTheme('female')">
+                <i class="fas fa-venus"></i> Femenino
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 30px;">Generador de Certificados Académicos</h2>
+        
+        <div class="form-group">
+            <label for="nombre">Nombre completo del estudiante:</label>
+            <input type="text" id="nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tipo-documento">Tipo de documento:</label>
+            <select id="tipo-documento" required>
+                <option value="">Seleccionar...</option>
+                <option value="CC">Cédula de Ciudadanía</option>
+                <option value="TI">Tarjeta de Identidad</option>
+                <option value="CE">Cédula de Extranjería</option>
+                <option value="PA">Pasaporte</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="documento">Número de documento:</label>
+            <input type="text" id="documento" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tipo-certificado">Tipo de certificado:</label>
+            <select id="tipo-certificado" required>
+                <option value="">Seleccionar...</option>
+                <option value="cert_estudios">Certificado de Estudios</option>
+                <option value="cert_notas">Certificado de Notas</option>
+                <option value="cert_conducta">Certificado de Conducta</option>
+                <option value="cert_egreso">Certificado de Egreso</option>
+            </select>
+        </div>
+
+        <div class="signature-container">
+            <label>Firma del estudiante:</label>
+            <div class="upload-signature">
+                <input type="file" id="fileInput" accept="image/*" hidden>
+                <label for="fileInput" class="upload-btn">
+                    <i class="fas fa-upload"></i> Subir Firma
+                </label>
+            </div>
+            <canvas id="signatureCanvas"></canvas>
+            <div class="button-group">
+                <button type="button" onclick="clearSignature()" class="clear-btn">
+                    <i class="fas fa-eraser"></i> Limpiar Firma
+                </button>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button onclick="generatePDF()">
+                <i class="fas fa-file-pdf"></i> Generar Certificado PDF
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
